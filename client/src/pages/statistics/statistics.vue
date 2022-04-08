@@ -366,8 +366,8 @@ export default {
   .analyse-btn-wrapper {
     .analyse-btn {
       position: absolute;
-      left: calc(100vw - 90px);
-      width: 90px;
+      left: calc(100vw - 100px);
+      width: 100px;
       height: 50px;
       line-height: 50px;
       border-radius: 45px 0 0 45px;
