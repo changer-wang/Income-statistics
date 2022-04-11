@@ -23,8 +23,8 @@
       <view class="analyse-content">
         <view class="analyse-title">分析情况</view>
         <nut-cell-group
-          title=""
-          :desc="`近${state.list.length}场收益记录`">
+          :title="`近${state.list.length}场收益记录`"
+          :desc="`${state.list.length}中${winCount}`">
           <nut-cell title="投入总额">
             <template v-slot:link>
               <nut-price
@@ -52,7 +52,7 @@
           <nut-cell title="平均收益">
             <template v-slot:link>
               <nut-price
-              :price="incomeTotal / state.list.length"
+              :price="(incomeTotal - investTotal) / state.list.length"
               size="normal"
               :decimal-digits="2"
               :thousands="true" />
@@ -87,8 +87,19 @@
               :price="losingStreak"
               size="normal"
               position="after"
-              :decimal-digits="0"
-              :need-symbol="false"
+              symbol="%"
+              :need-symbol="true" />
+            </template>
+          </nut-cell>
+          <nut-cell title="胜率">
+            <template v-slot:link>
+              <nut-price
+              :price="winCount / state.list.length * 100"
+              size="normal"
+              position="after"
+              symbol="%"
+              :decimal-digits="2"
+              :need-symbol="true"
               :thousands="true" />
             </template>
           </nut-cell>
@@ -312,7 +323,10 @@ export default {
       return max
     })
 
-
+    const winCount = computed(() => {
+      const list = toRaw(state.list)
+      return list.filter(item => item.income > item.invest).length
+    })
 
     return {
       state,
@@ -326,7 +340,8 @@ export default {
       investTotal,
       incomeTotal,
       winningStreak,
-      losingStreak
+      losingStreak,
+      winCount,
     };
   },
 };
@@ -360,6 +375,10 @@ export default {
         font-size: 16px;
         font-weight: 700;
         text-align: center;
+      }
+      .nut-cell-group__desc {
+        font-size: 16px;
+        color: red;
       }
     }
   }
