@@ -86,9 +86,8 @@
               <nut-price
               :price="losingStreak"
               size="normal"
-              position="after"
-              symbol="%"
-              :need-symbol="true" />
+              :decimal-digits="0"
+              :need-symbol="false" />
             </template>
           </nut-cell>
           <nut-cell title="胜率">
