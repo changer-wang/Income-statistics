@@ -22,6 +22,10 @@ import {
   Swipe,
   Empty,
   Drag,
+  Picker,
+  Collapse,
+  CollapseItem,
+  Divider,
 } from '@nutui/nutui-taro';
 
 import './app.scss'
@@ -61,6 +65,11 @@ App.use(Empty)
 App.use(Drag)
 App.use(OverLay)
 App.use(Price)
+App.use(Picker)
+App.use(Collapse)
+App.use(CollapseItem)
+App.use(Divider)
+
 
 
 export default App

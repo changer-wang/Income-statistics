@@ -1,15 +1,33 @@
 <template>
   <view class="index">
-    <view class="control-btn">
-      <nut-button class="btn" type="primary" @click="toRecord"
-        >收益记录</nut-button
-      >
-      <nut-button
-        class="btn"
-        type="info"
-        @click="toStatistics"
-        >收益统计</nut-button
-      >
+    <view class="control-btn-wrapper">
+      <view class="control-btn">
+        <nut-button class="btn" type="primary" @click="toRecord"
+          >收益记录</nut-button
+        >
+        <nut-button
+          class="btn"
+          type="info"
+          @click="toStatistics"
+          >收益统计</nut-button
+        >
+      </view>
+      <view class="control-btn">
+        <nut-button
+          class="btn"
+          type="primary"
+          plain
+          @click="toBillRecord"
+          >推单记录</nut-button
+        >
+        <nut-button
+          class="btn"
+          type="info"
+          plain
+          @click="toReferrerStatistics"
+          >推单统计</nut-button
+        >
+      </view>
     </view>
   </view>
 </template>
@@ -68,8 +86,16 @@ export default {
       Taro.navigateTo({ url: "/pages/record/record" });
     };
 
+    const toBillRecord = () => {
+      Taro.navigateTo({ url: "/pages/bill-record/billRecord" });
+    };
+
     const toStatistics = () => {
       Taro.navigateTo({ url: "/pages/statistics/statistics" });
+    }
+
+    const toReferrerStatistics = () => {
+      Taro.navigateTo({ url: "/pages/referrer-list/referrerList" });
     }
 
     onBeforeMount(() => {
@@ -81,6 +107,8 @@ export default {
       handleClick,
       toRecord,
       toStatistics,
+      toBillRecord,
+      toReferrerStatistics,
     };
   },
 };
@@ -98,11 +126,14 @@ export default {
   background: url("https://vanthink.oss-cn-qingdao.aliyuncs.com/2775439e83f2d66b2ebca88d7e500372.jpeg")
     no-repeat center center/100% 100%;
   overflow: hidden;
-  .control-btn {
+  .control-btn-wrapper {
     position: relative;
     top: 200px;
-    display: flex;
-    justify-content: space-around;
+    .control-btn {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
     .btn {
       font-size: 20px;
     }
