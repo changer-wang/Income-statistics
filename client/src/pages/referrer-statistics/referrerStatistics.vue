@@ -57,6 +57,17 @@
               :thousands="true" />
             </template>
           </nut-cell>
+          <nut-cell title="平均赔率">
+            <template v-slot:link>
+              <nut-price
+              :price="averagePower"
+              size="normal"
+              position="after"
+              :decimal-digits="2"
+              :need-symbol="false"
+              :thousands="true" />
+            </template>
+          </nut-cell>
         </nut-cell-group>
       </view>
     </nut-popup>
@@ -215,12 +226,12 @@ export default {
             }
           },
         }).then((res) => {
-          console.log(res)
+          // console.log(res)
         })
     }
 
     const loadMore = (e) => {
-      console.log(e)
+      // console.log(e)
     }
 
     const refresh = (done) => {
@@ -299,11 +310,19 @@ export default {
       return list.filter(item => item.is_win).length
     })
 
+    const averagePower = computed(() => {
+      const list = toRaw(state.list)
+      const powerTotal = list.reduce((pre, cur) => {
+        return pre + cur.invest
+      }, 0)
+      return powerTotal / list.length
+    })
+
     onBeforeMount(() => {
       const { params: { id, type: ballType } } = Taro.getCurrentInstance().router;
       state.type = ballType
       state.id = id
-      getReferrer()
+      // getReferrer()
       getList()
     })
 
@@ -316,6 +335,7 @@ export default {
       refresh,
       openPop,
       closeOverlay,
+      averagePower,
       investTotal,
       incomeTotal,
       winningStreak,

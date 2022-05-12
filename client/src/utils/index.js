@@ -251,7 +251,6 @@ const utils = {
           openid,
         },
       }).then(({ result }) => {
-        console.log(result)
         if (loadingMessage) {
           Taro.hideLoading();
         }

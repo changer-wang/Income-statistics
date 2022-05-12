@@ -37,7 +37,7 @@
           class="basketball-info flex"
           v-if="item.basketball_total">
           <view class="item">篮球当前连红: {{item.current_basketball_red}}</view>
-          <view class="item">篮球历史连黑: {{item.current_basketball_black}}</view>
+          <view class="item">篮球当前连黑: {{item.current_basketball_black}}</view>
           <nut-button
             class="detail-btn"
             size="mini"
