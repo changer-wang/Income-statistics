@@ -44,6 +44,7 @@ exports.main = async (event, context) => {
     if (isWin) {
       options[`${type}_red_total`] = _.inc(1)
       options[`current_${type}_red`] = _.inc(1)
+      options[`current_${type}_black`] = 0
 
       if (currentData[`current_${type}_red`] + 1 > currentData[`history_${type}_red`]) {
         options[`history_${type}_red`] = currentData[`current_${type}_red`] + 1

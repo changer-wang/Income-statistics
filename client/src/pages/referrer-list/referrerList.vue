@@ -18,8 +18,8 @@
           </view>
         </template>
         <view class="football-info flex">
-          <view class="item">足球当前连红: {{item.current_football_red}}</view>
-          <view class="item">足球当前连黑: {{item.current_football_black}}</view>
+          <view class="item">足球胜率: {{computedFootball(item)}}%</view>
+          <view class="item">场数: {{item.football_total}}</view>
           <nut-button
             class="detail-btn"
             size="mini"
@@ -27,17 +27,13 @@
             color="linear-gradient(to right, #ff6034, #ee0a24)">
             详情
           </nut-button>
-        </view>
-        <view class="flex">
-          <view class="item">足球胜率: {{computedFootball(item)}}%</view>
-          <view class="item">场数: {{item.football_total}}</view>
         </view>
         <nut-divider v-if="item.basketball_total" dashed></nut-divider>
         <view
           class="basketball-info flex"
           v-if="item.basketball_total">
-          <view class="item">篮球当前连红: {{item.current_basketball_red}}</view>
-          <view class="item">篮球当前连黑: {{item.current_basketball_black}}</view>
+          <view class="item">篮球胜率: {{computedBasketball(item)}}%</view>
+          <view class="item">场数: {{item.basketball_total}}</view>
           <nut-button
             class="detail-btn"
             size="mini"
@@ -45,10 +41,6 @@
             color="linear-gradient(to right, #ff6034, #ee0a24)">
             详情
           </nut-button>
-        </view>
-        <view class="flex" v-if="item.basketball_total">
-          <view class="item">篮球胜率: {{computedBasketball(item)}}%</view>
-          <view class="item">场数: {{item.basketball_total}}</view>
         </view>
       </nut-collapse-item>
     </nut-collapse>
@@ -122,15 +114,9 @@ export default {
       position: relative;
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
-      .detail-btn {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-      }
+      align-items: center;
       .item {
-        width: 50%;
+        width: 33%;
       }
     }
   }
